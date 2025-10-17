@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arraiolos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #8B4513;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #8B4513;
+        }
+
+        .cart-icon {
+            background: #8B4513;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .cart-icon:hover {
+            background: #A0522D;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #8B4513;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #666;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #8B4513;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 0 10px;
+        }
+
+        .btn:hover {
+            background: #A0522D;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #8B4513;
+            border: 2px solid #8B4513;
+        }
+
+        .btn-outline:hover {
+            background: #8B4513;
+            color: white;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: #8B4513;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #8B4513;
+        }
+
+        /* Origem Section */
+        .origem-section {
+            padding: 80px 0;
+            background: #f9f9f9;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #8B4513;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .origem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .origem-card {
+            background-color: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .origem-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .origem-image {
+            width: 100%;          /* Ocupa toda a largura do card */
+            max-width: 250px;     /* Largura máxima uniforme */
+            height: 180px;        /* Altura fixa para todas as imagens */
+            object-fit: cover;    /* Corta ou ajusta para preencher sem distorcer */
+            display: block;
+            margin: 0 auto 20px;  /* Centraliza horizontalmente e dá espaçamento abaixo */
+            border-radius: 8px;   /* Opcional, cantos arredondados */
+        }
+
+
+        .origem-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .origem-content p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #8B4513;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: #ddd;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .gastronomia-section {
+    padding: 80px 0;
+    background: #fff8f0;
+}
+
+    .gastronomia-grid {
+        display: flex;
+        justify-content: center; /* centraliza as imagens */
+        gap: 20px;               /* espaço entre as imagens */
+        flex-wrap: wrap;          /* quebra em ecrãs pequenos */
+        margin-bottom: 30px;      /* espaço entre imagens e texto */
+    }
+
+    .gastronomia-image {
+        width: 220px;             /* largura uniforme */
+        height: 150px;            /* altura uniforme */
+        object-fit: cover;
+        border-radius: 12px;
+        display: block;
+    }
+
+    .gastronomia-text {
+        max-width: 700px;
+        margin: 0 auto;
+        text-align: center;
+        text-align: justify;
+    }
+
+    .gastronomia-text h3 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        color: #8B4513;
+    }
+
+    .gastronomia-text p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #555;
+    }
+
+
+
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #8B4513;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #8B4513;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #555;
+            color: #ccc;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .features-grid,
+            .origem-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">Arraiolos</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#origem-arraiolos">Origens</a></li>
+                <li><a href="#sobre">Curiosidades</a></li>
+                <li><a href="#gastronomia">Produtos locais</a></li>
+            </ul>
+            <a href="https://www.google.com/maps/place/Arraiolos,+Portugal" class="cart-icon" target="_blank">Localização</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <h1 class="fade-in">Bem-vindo a Arraiolos</h1>
+            <p class="fade-in">
+                Arraiolos é uma vila histórica do Alentejo, conhecida pelos seus tapetes bordados à mão, património cultural preservado e tradições únicas que atravessam séculos. Um lugar de charme, gastronomia deliciosa e comunidade acolhedora.
+            </p>
+            <div>
+                <a href="#origem-arraiolos" class="btn btn-outline">Conhecer Origem</a>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Origem do Nome Section -->
+    <section id="origem-arraiolos" class="origem-section">
+        <div class="container">
+            <h2 class="section-title">Origens de Arraiolos</h2>
+            <p class="section-subtitle">Descubra as tradições e culturas típicas desta vila!</p>
+            
+            <div class="origem-grid">
+                <div class="origem-card">
+                    <img src="https://www.cm-arraiolos.pt/wp-content/uploads/2020/06/ARU-Arl_Mapa1-APsACRRU-724x1024.jpg" 
+                         alt="Mapa de Arraiolos" class="origem-image">
+                    <div class="origem-content">
+                        <h3>Raízes Árabes</h3>
+                        <p>O nome “Arraiolos” acredita-se derivar do termo árabe <em>“Arraiol”</em>, que significa “lugar cercado”. A vila terá surgido como um pequeno povoado muçulmano, protegida por muralhas e situada estrategicamente no Alentejo.</p>
+                    </div>
+                </div>
+
+                <div class="origem-card">
+                    <img src="https://www.impulsiveaddiction.com/wp-content/uploads/2021/05/castelo-arraiolos.jpg" alt="Castelo de Arraiolos" class="origem-image">
+                    <div class="origem-content">
+                        <h3>Reconquista Cristã</h3>
+                        <p>Após a Reconquista, Arraiolos foi doada à Ordem de Avis por D. Afonso II, no século XIII. A vila desenvolveu-se dentro das muralhas do castelo, tornando-se num núcleo estratégico da região.</p>
+                    </div>
+                </div>
+
+                <div class="origem-card">
+                    <img src="https://turistaprofissional.com/wp-content/uploads/2018/09/Tapetes-de-Arraiolos.jpg" alt="Tapetes de Arraiolos" class="origem-image">
+                    <div class="origem-content">
+                        <h3>Tradição e Cultura</h3>
+                        <p>Ao longo dos séculos, Arraiolos manteve a sua identidade cultural, sendo hoje conhecida pelos seus famosos tapetes bordados à mão e pelo património histórico preservado, símbolo da riqueza do Alentejo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gastronomia Section -->
+<section id="gastronomia" class="gastronomia-section">
+    <div class="container">
+        <h2 class="section-title">Gastronomia de Arraiolos</h2>
+        <p class="section-subtitle">Se ainda não foste conquistado, será que o teu estômago resiste?</p>
+        
+        <!-- Imagens lado a lado -->
+        <div class="gastronomia-grid">
+            <img src="https://www.radiocampanario.com/wp-content/uploads/2024/11/empada-de-arraiolos-1024x683.jpg" 
+                 alt="Empada 1" class="gastronomia-image">
+            <img src="https://th.bing.com/th/id/R.bf0e6aa4b43ed29412f7caea4fc0fa3c?rik=d457PLE3jk7dqQ&riu=http%3a%2f%2fimagens.publico.pt%2fimagens.aspx%2f539036%3ftp%3dKM%26act%3dResize&ehk=XNtsohWdDsoBiWt7v4q2dZ6VsHt%2b8f6DkgOXBX88t0o%3d&risl=&pid=ImgRaw&r=0" 
+                 alt="Empada 2" class="gastronomia-image">
+            <img src="https://infocul.pt/wp-content/uploads/2025/10/empadas.jpg" 
+                 alt="Empada 3" class="gastronomia-image">
+        </div>
+
+        <!-- Texto por baixo das imagens -->
+        <div class="gastronomia-text">
+            <h3>As famosas Empadas de Arraiolos</h3>
+            <p>As empadas de Arraiolos são uma iguaria típica do Alentejo, com massa crocante e recheio suculento, tradicionalmente feitas com carne de porco, temperos locais e muito amor. Um verdadeiro símbolo da gastronomia regional que conquista todos os visitantes!</p>
+        </div>
+    </div>
+</section>
+
+
+    
+
+    <!-- Curiosidades Section -->
+<section id="sobre" class="about">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Curiosidades sobre Arraiolos</h2>
+                <p>Arraiolos é uma vila alentejana cheia de história e tradições. É conhecida mundialmente pelos seus famosos tapetes bordados à mão, que atravessam séculos de herança cultural e artesanal.</p>
+                <p>O Castelo de Arraiolos, construído no século XIII, é um marco histórico que protegeu a vila durante a Reconquista Cristã. Passear pelas ruas de Arraiolos é viajar no tempo e sentir a presença de séculos de cultura e tradição.</p>
+                <p>O <strong>Clube de Futebol LCDA</strong> é uma paixão local que une a comunidade. Formando jovens talentos e promovendo o desporto na região, o clube é hoje um símbolo de orgulho para os habitantes.</p>
+                <p>Além do desporto, Arraiolos mantém tradições culinárias únicas, como as famosas empadas, e celebrações locais que refletem o carácter acolhedor da vila.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://www.vortexmag.net/wp-content/uploads/2015/05/10981073_787377341309501_2130083883941642881_o-e1434571297950.jpg" 
+                     alt="Castelo de Arraiolos">
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer id="contato">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Guilherme Marques</h3>
+                <p>Conecta-te comigo no LinkedIn:</p>
+                <p><a href="www.linkedin.com/in/guilherme-marques-961790328" target="_blank" style="color: #8B4513; text-decoration: none;">LinkedIn</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom" style="text-align: center; padding-top: 2rem; color: #555;">
+            <p>&copy; 2025 Guilherme Marques. Todos os direitos reservados.</p>
+        </div>
+    </div>
+</footer>
